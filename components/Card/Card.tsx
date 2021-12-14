@@ -1,16 +1,18 @@
-import { ReactNode, FC, CSSProperties } from "react";
-import styles from "./Card.module.css";
+import { FC } from "react";
 
-interface CardProps {
-  children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  props?: any;
-}
-
-const Card: FC<CardProps> = ({ children, className, style, ...props }) => {
+const Card: FC<JSX.IntrinsicElements["div"]> = ({
+  children,
+  className,
+  ...props
+}: JSX.IntrinsicElements["div"]) => {
   return (
-    <div className={`${styles.card} ${className}`} style={style} {...props}>
+    <div
+      className={
+        `p-4 flex flex-col space-y-2 shadow-lg rounded-lg w-[100%] min-w-[240px] max-w-[400px] h-[420px]` +
+        `${className} `
+      }
+      {...props}
+    >
       {children}
     </div>
   );
