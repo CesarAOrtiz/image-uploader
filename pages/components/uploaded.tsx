@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import Uploaded from "../components/Uploaded";
+import Uploaded from "../../components/Uploaded";
 
 const UploadedPage: NextPage = () => {
-  return <Uploaded url="/uploaded.jpg" />;
+  return <Uploaded src="/uploaded.jpg" />;
 };
 
 export default UploadedPage;

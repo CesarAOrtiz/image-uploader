@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import Uploader from "../components/Uploader";
+import Uploader from "../../components/Uploader";
 
 const UploaderPage: NextPage = () => {
   return <Uploader />;

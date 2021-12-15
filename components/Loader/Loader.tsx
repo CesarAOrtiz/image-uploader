@@ -1,15 +1,12 @@
 import { FC } from "react";
-import style from "./Loader.module.css";
 import Card from "../Card";
+import Progressbar from "../Progressbar";
 
 const Loader: FC = () => {
   return (
-    <Card
-      className={style.container}
-      style={{ padding: "1rem 2rem", height: 140, minHeight: 140 }}
-    >
-      <h2>Loading...</h2>
-      <progress value="50" max="100" className={style.progress} />
+    <Card className="px-8 py-4 h-[140px]">
+      <h2 className="text-xl font-medium">Uploading...</h2>
+      <Progressbar />
     </Card>
   );
 };

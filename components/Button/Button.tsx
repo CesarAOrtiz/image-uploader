@@ -1,22 +1,17 @@
-import { CSSProperties, FC } from "react";
-import styles from "./Button.module.css";
+import { FC } from "react";
 
-interface ButtonProps {
-  text?: string;
-  className?: string;
-  style?: CSSProperties;
-  onClick?: (e: any) => void;
-}
-
-const Button: FC<ButtonProps> = ({ text, className, style, onClick }) => {
+const Button: FC<JSX.IntrinsicElements["button"]> = ({
+  children,
+  className,
+  ...props
+}) => {
   return (
     <button
-      className={`${styles.button} ${className}`}
-      onClickCapture={(e) => {
-        onClick && onClick(e);
-      }}
+      className={`bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-md 
+      rounded-lg py-2 px-4 text-white ${className || ""}`}
+      {...props}
     >
-      {text}
+      {children}
     </button>
   );
 };
