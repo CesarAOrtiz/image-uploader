@@ -10,7 +10,7 @@ const useUpload = () => {
     try {
       setIsLoading(true);
       const response = await uploadImage(file);
-      setFile(response);
+      setFile(response.data);
     } catch (e: any) {
       setError(e.message);
     } finally {

@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
 
         <main
-          className="w-full h-full flex justify-center items-center flex-wrap"
+          className="w-full h-full flex flex-col justify-center items-center flex-wrap"
           style={{ justifyContent: "space-around" }}
         >
           <Component {...pageProps} />{" "}
