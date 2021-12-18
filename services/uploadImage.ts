@@ -6,10 +6,8 @@ const uploadImage = async (file: File) => {
       method: "POST",
       body: data,
     });
-    console.log(request);
-    // if (request.status !== 200) throw new Error("Upload failed");
     const response = await request.json();
-    console.log(response);
+    if (request.status !== 200) throw new Error(response.error);
     return response;
   } catch (e: any) {
     throw new Error(e.message);

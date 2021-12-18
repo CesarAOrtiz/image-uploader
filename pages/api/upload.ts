@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 import multer from "multer";
+import cloudinary from "../../services/cloudinary";
 
 type Data = {
   data?: string;
@@ -35,13 +36,17 @@ interface Request extends NextApiRequest {
 
 apiRoute.post((req: Request, res: NextApiResponse<Data>) => {
   const file = req.file;
-  res.status(200).json({ data: `/uploads/${file.filename}` });
+
+  cloudinary.uploader.upload(file.path, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    }
+    res.status(200).json({ data: result?.secure_url });
+  });
 });
 
 export default apiRoute;
 
 export const config = {
-  api: {
-    bodyParser: false, // Disallow body parsing, consume as stream
-  },
+  api: { bodyParser: false },
 };

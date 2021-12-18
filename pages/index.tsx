@@ -8,21 +8,29 @@ import useUpload from "../hooks/useUpload";
 
 const Home: NextPage = () => {
   const { upload, file, error, isLoading } = useUpload();
+  const [showUpload, setShowUpload] = useState(false);
+
+  const handleUpload = (file: File) => {
+    upload(file);
+    setShowUpload(true);
+  };
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (file) {
+  if (file && showUpload) {
     return (
       <>
         <Uploaded src={file} />
-        <Button onClick={() => {}}>Upload another image</Button>
+        <Button onClick={() => setShowUpload(false)}>
+          Upload another image
+        </Button>
       </>
     );
   }
 
-  return <Uploader onDropFile={upload} />;
+  return <Uploader onDropFile={handleUpload} />;
 };
 
 export default Home;

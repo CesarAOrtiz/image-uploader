@@ -9,6 +9,7 @@ const useUpload = () => {
   const upload = async (file: File) => {
     try {
       setIsLoading(true);
+      setError(null);
       const response = await uploadImage(file);
       setFile(response.data);
     } catch (e: any) {
