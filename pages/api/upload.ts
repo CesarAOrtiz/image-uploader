@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 import multer from "multer";
 import cloudinary from "../../services/cloudinary";
-import fs from "fs";
 
 type Data = {
   data?: string;
@@ -10,10 +9,7 @@ type Data = {
 };
 
 const upload = multer({
-  storage: multer.diskStorage({
-    destination: "./public/uploads",
-    filename: (req, file, cb) => cb(null, file.originalname + "-" + Date.now()),
-  }),
+  storage: multer.memoryStorage(),
 });
 
 const apiRoute = nextConnect({
@@ -36,14 +32,18 @@ interface Request extends NextApiRequest {
 }
 
 apiRoute.post(async (req: Request, res: NextApiResponse<Data>) => {
-  const file = req.file;
-  try {
-    const upload = await cloudinary.uploader.upload(file.path);
-    await fs.promises.unlink(file.path);
-    res.status(200).json({ data: upload.secure_url });
-  } catch (e: any) {
-    res.status(500).json({ error: e.message });
-  }
+  const cld_upload_stream = cloudinary.uploader.upload_stream(
+    { folder: "image-uploader" },
+    (error, result) => {
+      if (error) {
+        res.status(500).json({ error: error.message });
+      }
+      if (result) {
+        res.status(200).json({ data: result.secure_url });
+      }
+    }
+  );
+  cld_upload_stream.end(req.file.buffer);
 });
 
 export default apiRoute;
