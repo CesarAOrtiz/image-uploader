@@ -2,6 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 import Card from "../Card";
 import Button from "../Button";
+import CheckCircle from "../CheckCircle";
 
 interface Props {
   src: string;
@@ -9,7 +10,12 @@ interface Props {
 
 const Uploaded: FC<Props> = ({ src }) => {
   return (
-    <Card className="justify-between">
+    <Card className="justify-around">
+      <CheckCircle
+        fill="green"
+        color="white"
+        className="h-[35px] w-[35px] mt-4"
+      />
       <p className="text-xl font-medium">Uploaded Successfully</p>
       <div className="flex justiyf-center items-center max-w-[330px] max-h-[220px]">
         <Image
