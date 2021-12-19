@@ -10,11 +10,11 @@ const Home: NextPage = () => {
     typeof file === "string" ? setUploaded(file) : setUploaded("");
   };
   return (
-    <>
+    <div className="flex flex-wrap flex-row w-full justify-center items-center">
       <Uploader onLoadReady={onLoadReady} />
       <Loader />
       <Uploaded src={uploaded} />
-    </>
+    </div>
   );
 };
 

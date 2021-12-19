@@ -14,12 +14,21 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main
-          className="w-full h-full flex flex-col justify-center items-center flex-wrap"
-          style={{ justifyContent: "space-around" }}
-        >
-          <Component {...pageProps} />{" "}
+        <main className="w-full h-full flex flex-grow flex-col justify-center items-center flex-wrap">
+          <Component {...pageProps} />
         </main>
+        <footer className="w-full py-4 flex flex-col justify-center items-center">
+          <p className="text-gray-400 font-bold">
+            created by{" "}
+            <a
+              href="https://github.com/CesarAOrtiz"
+              className="text-gray-500 underline"
+            >
+              César Ortiz
+            </a>{" "}
+            - <a href="https://devchallenges.io/">devChallenges.io</a>
+          </p>
+        </footer>
       </div>
     </>
   );
