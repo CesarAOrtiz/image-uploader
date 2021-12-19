@@ -7,8 +7,6 @@ const uploadImage = async (file: File) => {
       body: data,
     });
     const response = await request.json();
-    console.log(request);
-    console.log(response);
     if (request.status !== 200) throw new Error(response.error);
     return response;
   } catch (e: any) {
